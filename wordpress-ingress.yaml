@@ -1,0 +1,34 @@
+﻿apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    field.cattle.io/creatorId: user-jhz7t
+    field.cattle.io/ingressState: '{"Y2xvdWQtbGV0c2dvZGV2b3BzLWNydA==":"wordpress:cloud-letsgodevops-crt","d29yZHByZXNzL3dvcmRwcmVzcy9jbG91ZC5sZXRzZ29kZXZvcHMuZGUvLzgwODA=":"deployment:wordpress:wordpress"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.178.47"],"port":443,"protocol":"HTTPS","serviceName":"wordpress:ingress-246a317ed87ed3011b890c70ba54894b","ingressName":"wordpress:wordpress","hostname":"cloud.letsgodevops.de","allNodes":true}]'
+    kubernetes.io/tls-acme: '"true"'
+  creationTimestamp: "2020-06-02T23:15:30Z"
+  generation: 4
+  labels:
+    cattle.io/creator: norman
+  name: wordpress
+  namespace: wordpress
+  resourceVersion: "221581"
+  selfLink: /apis/extensions/v1beta1/namespaces/wordpress/ingresses/wordpress
+  uid: 2d75d441-64d1-42c3-a3d7-03ad2c7c44cc
+spec:
+  rules:
+  - host: domain.com
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-246a317ed87ed3011b890c70ba54894b
+          servicePort: 8080
+  tls:
+  - hosts:
+    - domain.com
+    secretName: domain-crt
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.178.47
